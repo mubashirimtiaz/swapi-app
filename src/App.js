@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { Navbar, People, Planets } from "./components";
 
 const App = () => {
+  const [page, setPage] = useState("planets");
   return (
-    <div>
-      <h1>React App</h1>
+    <div className="App">
+      <h1>Star Wars Info</h1>
+      <Navbar togglePage={setPage} />
+      <div className="content">
+        {page === "planets" ? <Planets /> : <People />}
+      </div>
     </div>
   );
 };
