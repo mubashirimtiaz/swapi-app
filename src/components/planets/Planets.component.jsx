@@ -21,11 +21,15 @@ const Planets = () => {
   }, [page]);
   return (
     <div>
+      <h2>Planets</h2>
       {status === "loading" && <p>loading...</p>}
       {status === "error" && <p>error in fetching data</p>}
       {status === "success" && (
         <>
-          <button onClick={() => setPage((old) => Math.max(old - 1, 1))}>
+          <button
+            onClick={() => setPage((old) => Math.max(old - 1, 1))}
+            disabled={page === 1}
+          >
             Previous
           </button>
           <span>{page}</span>
@@ -33,6 +37,7 @@ const Planets = () => {
             onClick={() =>
               setPage((old) => (!data || !data.next ? old : old + 1))
             }
+            disabled={!data.next}
           >
             Next
           </button>

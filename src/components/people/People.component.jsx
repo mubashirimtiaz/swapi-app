@@ -12,7 +12,7 @@ const People = () => {
   });
   return (
     <div>
-      {/* <h2>Planets</h2> */}
+      <h2>People</h2>
       {status === "loading" && <p>loading...</p>}
       {status === "error" && <p>error in fetching data</p>}
       {status === "success" && (
