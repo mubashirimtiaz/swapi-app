@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { Navbar, People, Planets } from "./components";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const App = () => {
   const [page, setPage] = useState("planets");
   return (
-    <div className="App">
-      <h1>Star Wars Info</h1>
-      <Navbar togglePage={setPage} />
-      <div className="content">
-        {page === "planets" ? <Planets /> : <People />}
+    <>
+      <div className="App">
+        <h1>Star Wars Info</h1>
+        <Navbar togglePage={setPage} />
+        <div className="content">
+          {page === "planets" ? <Planets /> : <People />}
+        </div>
       </div>
-    </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </>
   );
 };
 
