@@ -7,9 +7,14 @@ const fetchPeople = async ({ queryKey }) => {
 };
 
 const People = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(
+    localStorage.getItem("peoplePage")
+      ? Number(localStorage.getItem("peoplePage"))
+      : 1
+  );
   const { data, status } = useQuery(["people", page], fetchPeople, {
     staleTime: Infinity,
+    onSuccess: () => localStorage.setItem("peoplePage", page),
   });
   return (
     <div>

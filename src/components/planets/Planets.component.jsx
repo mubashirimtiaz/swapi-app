@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Planet } from "../";
 const fetchPlanets = async ({ queryKey }) => {
@@ -8,17 +8,17 @@ const fetchPlanets = async ({ queryKey }) => {
 
 const Planets = () => {
   const [page, setPage] = useState(
-    localStorage.getItem("page") ? Number(localStorage.getItem("page")) : 1
+    localStorage.getItem("planetPage")
+      ? Number(localStorage.getItem("planetPage"))
+      : 1
   );
   const { data, status } = useQuery(["planets", page], fetchPlanets, {
     // staleTime: 2000,
     // cacheTime: 1000,
     // keepPreviousData: true,
-    // onSuccess: () => console.log("fetched data successfully"),
+    onSuccess: () => localStorage.setItem("planetPage", page),
   });
-  useEffect(() => {
-    localStorage.setItem("page", page);
-  }, [page]);
+
   return (
     <div>
       <h2>Planets</h2>
